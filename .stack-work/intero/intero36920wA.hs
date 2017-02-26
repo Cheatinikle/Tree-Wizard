@@ -4,7 +4,7 @@ import Test.HUnit
 import TW.Tree
 import Data.Typeable
 
-  tests = test [ "Int type" ~: (typeOf (1 :: Int)) ~=? type1,
+tests = test [ "Int type" ~: (typeOf (1 :: Int)) ~=? type1,
                "Getting Node" ~: (1 :: Int) ~=? (valOfNode $ getFromTree 1 tree1),
                "Getting Node2" ~: (4 :: Int) ~=? (valOfNode $ getFromTree 3 tree1)]
         where

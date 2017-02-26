@@ -1,6 +1,8 @@
 module TW.Tree where
 
 import Data.Typeable
+import Control.Monad.State
+
 data Tree a = Empty | Node a [Tree a]
   deriving (Eq, Show)
 
