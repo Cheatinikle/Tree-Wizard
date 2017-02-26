@@ -1,8 +1,12 @@
 module TW.Tree where
 
 import Data.Typeable
-data Tree a = Empty | Node a [Tree a]
+import Control.Monad.ST
+
+data RealTree a = Empty | Node a [Tree a]
   deriving (Eq, Show)
+
+type Tree a = State a a
 
 treeType :: (Typeable a) => Tree a -> TypeRep
 treeType (Node a _) = typeOf a
