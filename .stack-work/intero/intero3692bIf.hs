@@ -3,11 +3,12 @@ module TW.Tree where
 import Data.Typeable
 import Control.State
 
+type Tree a = State (RealTree a) a
 data RealTree a = Empty | Node a [Tree a]
   deriving (Eq, Show)
 
 treeType :: (Typeable a) => Tree a -> TypeRep
-treeType (Node a _) = typeOf a
+treeType (Node a _) = ()typeOf a
 
 getFromTree :: (Typeable a, Eq a) => Int -> Tree a -> Tree a
 getFromTree n tree = treeList [tree] !! (n-1) where
