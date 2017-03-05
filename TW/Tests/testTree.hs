@@ -5,8 +5,8 @@ import TW.Tree
 import Data.Typeable
 
 tests = test [ "Int type" ~: (typeOf (1 :: Int)) ~=? type1,
-               "Getting Node" ~: (1 :: Int) ~=? (valOfNode $ getFromTree 1 tree1),
-               "Getting Node2" ~: (4 :: Int) ~=? (valOfNode $ getFromTree 3 tree1)]
+               "Getting Node" ~: (1 :: Int) ~=? (getFromTree 1 tree1),
+               "Getting Node2" ~: (4 :: Int) ~=? (getFromTree 3 tree1)]
         where
           type1 = treeType tree1
           tree1 :: Tree Int
