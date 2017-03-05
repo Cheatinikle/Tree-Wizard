@@ -7,12 +7,18 @@ data Tree a = Empty | Node a [Tree a]
 treeType :: (Typeable a) => Tree a -> TypeRep
 treeType (Node a _) = typeOf a
 
-getFromTree :: (Typeable a, Eq a) => Int -> Tree a -> Tree a
-getFromTree n tree = treeList [tree] !! (n-1) where
+treeAt :: (Eq a) => (Tree a -> b) -> Int -> Tree a -> b
+treeAt f n tree@(Node x xs) = f $ treeList [tree] !! (n-1) where
   treeList [] = []
   treeList ts = ts ++ (treeList (concatMap childsOfNode ts))
 
-valOfNode :: (Typeable a) => Tree a -> a
+treeSet :: (Eq a) => (Tree a -> Tree a) -> Int -> Tree a -> Tree a
+treeSet f n tree@(Node x xs) = treeAt f n tree
+
+getFromTree :: (Eq a) => Int -> Tree a -> a
+getFromTree = treeAt valOfNode
+
+valOfNode :: Tree a -> a
 valOfNode (Node x _) = x
 
 childsOfNode :: (Eq a) => Tree a -> [Tree a]
